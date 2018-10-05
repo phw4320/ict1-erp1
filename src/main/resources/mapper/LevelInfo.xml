@@ -6,6 +6,10 @@
 	<select id="selectLevelInfo" resultType="li">
 		select * from level_info
 	</select>
+	
+	<select id="getLevelInfo" resultType="li">
+		select * from level_info where liname like '%' || #{liname} || '%'
+	</select>
 
 	<insert id="insertLevelInfo" parameterType="li">
 		insert into level_info(linum, lilevel, liname, lidesc) 
@@ -16,6 +20,7 @@
 		update level_info 
 		<set>
 			<if test="liname!=null">liname=#{liname},</if>
+			<if test="lilevel!=null">lilevel=#{lilevel},</if>
 			<if test="lidesc!=null">lidesc=#{lidesc}, </if>
 		</set>
 		where linum=#{linum}

@@ -25,26 +25,14 @@ import com.ict.erp.vo.LevelInfo;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class DataSourceTest {
 	
-	@Autowired
-	private DataSource ds;
-	
+
 	@Autowired
 	private SqlSessionFactory ssf;
 	
 	@Autowired
 	private SqlSession ss;
 	
-	@Test
-	public void test() {
-		try {
-			Connection con = ds.getConnection();
-			System.out.println("테스트 연결 완료");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+
 	@Test
 	public void ssfTest() {
 		try (SqlSession ss = ssf.openSession()) {
@@ -58,7 +46,7 @@ public class DataSourceTest {
 	public void ssTest() {
 		assertNotNull(ss);
 		List<LevelInfo> liList = ss.selectList("SQL.LEVELINFO.selectLevelInfo");
-		assertEquals(liList.size(), 1);
+		assertEquals(liList.size(), 12);
 	}
 	
 	@Test
