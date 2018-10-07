@@ -154,10 +154,9 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
-			<version>12.1.0</version>
+			<version>12.1.0.2</version>
 		</dependency>
-
-
+	
 		<!-- Hikaricp -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
@@ -204,7 +203,7 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-
+		
 		<!-- JackSon Config End -->
 	</dependencies>
 

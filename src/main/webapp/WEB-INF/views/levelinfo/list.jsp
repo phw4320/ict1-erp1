@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,17 +39,18 @@ var AjaxUtil = function(conf){
 	var conf = {
 			url : '/levelinfo',
 			success : function(res){
-				
+				contentType: "application/json; charset=UTF-8";
 				res = JSON.parse(res);
 				var html = '';
 				
 				for(var li of res){
 					html += '<tr>';
-					html += '<td>' + li.linum + '</td>';
-					html += '<td>' + li.lilevel + '</td>';
-					html += '<td>' + li.liname + '</td>';
-					html += '<td>' + li.lidesc + '</td>';
-					html += '<td><button>수정</button><button>삭제</button></td>';
+					html += '<td> <input type="text" name="linum" value='+li.linum+'></td>';
+					html += '<td> <input type="text" name="lilevel'+li.linum+'" value='+li.lilevel+'></td>';
+					html += '<td> <input type="text" name="liname'+li.linum+'"  value='+li.liname+'></td>';
+					html += '<td> <input type="text" name="lidesc'+li.linum+'"  value='+li.lidesc+'></td>';
+					
+					html += '<td><button onclick=updateLevelInfo('+li.linum+')>수정</button><button onclick="deleteLevelInfo('+li.linum+')">삭제</button></td>';
 					html += '</tr>';
 				} 
 				
@@ -60,29 +61,49 @@ var AjaxUtil = function(conf){
 	au.send();
 });
 </script>
-<body> 
+<body>
 
-	레벨 이름 : <input type="text" name="liname">
-	<button>검색</button>
-
-<table border="1">
-	<thead>
+	
+	
+	<table>
 		<tr>
-			<th>linum</th>
-			<th>lilevel</th>
-			<th>liname</th>
-			<th>lidesc</th>
-			<th>수정/삭제</th>
+			<td>
+				<form action="" method="get">
+				레벨 이름 : <input type="text" name="liname">
+					<button>검색</button>
+				</form>
+			</td>
+			<td>
+				<form action="/url/levelinfo:insert" method="get">
+					<button>추가</button>
+				</form>
+			</td>
+			<td>
+				<form action="" method="get">
+					<button>로그인</button>
+				</form>
+			</td>
 		</tr>
-	</thead>
-	<tbody id="liBody">
-	</tbody>
-</table>
+	</table>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>linum</th>
+				<th>lilevel</th>
+				<th>liname</th>
+				<th>lidesc</th>
+				<th>수정/삭제</th>
+			</tr>
+		</thead>
+		<tbody id="liBody">
+		</tbody>
+	</table>
 
 
-<script>
+	<script>
 function deleteLevelInfo(linum){
-/* 	var xhr = new XMLHttpRequest();
+	alert(linum);
+	var xhr = new XMLHttpRequest();
 	var url = "/levelinfo/" + linum;
 	var method = "delete";
 	xhr.open(method,url);
@@ -91,43 +112,54 @@ function deleteLevelInfo(linum){
 			if(xhr.status=="200"){
 				if(xhr.responseText=='1'){
 					alert("삭제 성공!");
-					location.href='/levelinfo';
+					location.href='/levelinfo/list';
 				}
 			}else{
 				alert("실패");
 			}
 		}
 	}
-	xhr.send(); */
+	xhr.send(); 
 }
 
 function updateLevelInfo(linum){
-/* 	var lilevel = document.querySelector("input[name=lilevel" + linum + "]").value;
-	var liname = document.querySelector("input[name=liname" + linum + "]").value;
-	var lidesc = document.querySelector("input[name=lidesc" + linum + "]").value;
-	
+	alert(linum);
+	var lilevel = document.querySelector("input[name=lilevel" + linum + "]").value;
+ 	var liname = document.querySelector("input[name=liname" + linum + "]").value;
+ 	var lidesc = document.querySelector("input[name=lidesc" + linum + "]").value;
+	alert(lilevel + "," + liname + "," +lidesc);
+
 	var xhr = new XMLHttpRequest();
-	alert(1);
-	var params = {liname:liname,lilevel:lilevel,lidesc:lidesc};
-	alert(params);
+	var data = {
+			liname:liname,
+			lilevel:lilevel,
+			lidesc:lidesc
+			};
+	data = JSON.stringify(data)
+	alert(data);
 	var url = "/levelinfo/"+linum;
 	var method = "put";
+	
 	xhr.open(method,url);
+	xhr.setRequestHeader("Content-type","application/json");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4){
 			if(xhr.status=="200"){
 				if(xhr.responseText=='1'){
 					alert("수정 성공!");
-					location.href='/levelinfo';
+					location.href='/levelinfo/list';
 				}
-			}else{
+			}		
+			else{
 				alert(xhr.status);
 				alert("실패");
 			}
 		}
 	}
-	xhr.send(params); */
+	xhr.send(data); 
 }
+
+
 </script>
 </body>
 </html>

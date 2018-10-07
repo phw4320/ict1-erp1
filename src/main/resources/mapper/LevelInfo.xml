@@ -30,4 +30,8 @@
 		delete from level_info
 		where linum=#{linum}
 	</delete>
+	
+	<select id="loginLevelInfo" parameterType="li">
+		select count(*) from level_info where liname=#{liname} and lidesc=#{lidesc}		
+	</select>
 </mapper>

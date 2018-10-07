@@ -12,7 +12,7 @@ public class UriController {
 		System.out.println(path);
 		path = path.replace(":", "/");
 		System.out.println(path);
-		return path;
+		return path 	;
 	}
 }
-
+	
