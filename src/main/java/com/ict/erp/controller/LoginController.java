@@ -1,4 +1,4 @@
-package com.ict.erp.controller;
+/*package com.ict.erp.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,3 +60,4 @@ public class LoginController {
 		}
 		return "/login/logout";
 	}
+*/
