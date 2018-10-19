@@ -50,9 +50,9 @@ public class PaPaGoTest {
 				throw new IOException(sb.toString());
 			}
 			ObjectMapper om = new ObjectMapper();
-			NaverMsg nm = om.readValue(sb.toString(), NaverMsg.class);
+			//NaverMsg nm = om.readValue(sb.toString(), NaverMsg.class);
 			
-			System.out.println(text+ "번역->"+nm.gdtMessage(nm.getResult().getReanslatedText());
+			//System.out.println(text+ "번역->"+nm.gdtMessage(nm.getResult().getReanslatedText());
 		} catch(MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

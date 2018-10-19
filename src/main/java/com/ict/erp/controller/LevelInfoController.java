@@ -31,8 +31,17 @@ public class LevelInfoController {
 		return "levelinfo/list";
 	}*/
 	
+	@RequestMapping(value="/levelinfos",method=RequestMethod.GET)
+	public @ResponseBody List<LevelInfo> getLevelInfoList2(@ModelAttribute LevelInfo li) throws SQLException {
+		return lis.getLevelInfoList(li);
+	}
 	
-	@RequestMapping(value="/levelinfo",method=RequestMethod.GET)
+	@RequestMapping(value="/levelinfos",method=RequestMethod.GET)
+	public @ResponseBody List<LevelInfo> getLevelInfoList3(@ModelAttribute LevelInfo li) throws SQLException {
+		return lis.getLevelInfoList(li);
+	}
+	
+	@RequestMapping(value="/levelinfo/{liname}",method=RequestMethod.GET)
 	public @ResponseBody List<LevelInfo> getLevelInfoList(@ModelAttribute LevelInfo li) throws SQLException {
 		return lis.getLevelInfoList(li);
 	}

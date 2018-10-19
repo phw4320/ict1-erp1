@@ -11,7 +11,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ict.erp.common.DBCon;
 import com.ict.erp.dao.LevelInfoDAO;
 import com.ict.erp.vo.LevelInfo;
 
@@ -44,4 +43,12 @@ public class LevelInfoDAOImpl implements LevelInfoDAO{
 	public int deleteLevelInfo(int linum) throws SQLException {
 		return ss.insert("SQL.LEVELINFO.deleteLevelInfo",linum);
 	}
+	
+
+	@Override
+	public int updateLevelInfoError(LevelInfo li) throws SQLException {
+		return ss.insert("SQL.LEVELINFO.updateLevelInfo",li);
+	}
+
 }
+

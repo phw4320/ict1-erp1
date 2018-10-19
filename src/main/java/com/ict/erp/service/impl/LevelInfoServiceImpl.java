@@ -40,4 +40,8 @@ public class LevelInfoServiceImpl implements LevelInfoService {
 		return lidao.deleteLevelInfo(linum);
 	}
 	
+	@Override
+	public int updateLevelInfoError(LevelInfo li) throws SQLException {
+		return lidao.updateLevelInfo(li);
+	}
 }

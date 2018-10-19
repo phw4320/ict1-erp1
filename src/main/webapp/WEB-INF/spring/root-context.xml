@@ -2,45 +2,90 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	
-	<context:property-placeholder location="classpath:config/db.properties"/>
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:property-placeholder
+		location="classpath:config/db.properties" />
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="jdbcUrl" value="${db.jdbcUrl}"/>
-		<property name="username" value="${db.username}"/>
-		<property name="password" value="${db.password}"/>
-		<property name="driverClassName" value="${db.driverClassName}"/>
-		<property name="autoCommit" value="${db.autoCommit}"/>
-		<property name="minimumIdle" value="${db.minimumIdle}"/>
-		<property name="maximumPoolSize" value="${db.maximumPoolSize}"/>
-		</bean>
-		
-	<bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<property name="jdbcUrl" value="${db.jdbcUrl}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="driverClassName"
+			value="${db.driverClassName}" />
+		<property name="autoCommit" value="${db.autoCommit}" />
+		<property name="minimumIdle" value="${db.minimumIdle}" />
+		<property name="maximumPoolSize"
+			value="${db.maximumPoolSize}" />
+	</bean>
+
+	<bean id="hikariDataSource"
+		class="com.zaxxer.hikari.HikariDataSource">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
 	</bean>
-	
-	<bean id="dataSourceProxy" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-		<constructor-arg ref="hikariDataSource"/>
+
+    <bean id="dataSourceProxy"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="hikariDataSource" />
 		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
-				<property name="loggingType" value="MULTI_LINE"/>
-				<property name="sqlPrefix" value="CUSTOM SQL LOG : ====>"/>
-				
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="CUSTOM SQL LOG : ====>" />
+
 			</bean>
 		</property>
-	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	</bean> 
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- <property name="dataSource" ref="hikariDataSource"/> -->
-		<property name="dataSource" ref="dataSourceProxy"/>
-		<property name="configLocation" value="classpath:config/mybatis.xml"/>
-		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+		<property name="dataSource" ref="dataSourceProxy" />
+		<property name="configLocation"
+			value="classpath:config/mybatis.xml" />
+		<property name="mapperLocations"
+			value="classpath:mapper/*.xml" />
+	</bean>
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	<!-- <bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceProxy" />
 	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes> 
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="txPointcut" expression="execution(* com.ict.erp.service.impl.*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+	 -->
+	<context:component-scan base-package="com.ict.erp.service" />
+	<context:component-scan base-package="com.ict.erp.dao" />
+	<context:component-scan base-package="com.ict.erp.aop" />
+	
+	<!-- <bean id="aet" class="com.ict.erp.dao.impl.NaverTransDAOImpl">
+		<property name="clientId" value="uFjJWa3h7CwVFykiz0Oa"></property>
+		<property name="clientSecret" value="Chrzy0_Vpn"></property>
+		<property name="clientIdAdd" value="X-Naver-Client-Id"></property>
+		<property name="clientSecretAdd" value="X-Naver-Client-Secret"></property>
+		<property name="apiURL" value="https://openapi.naver.com/v1/language/translate"></property>
+		<property name="source" value="en"></property>
+		<property name="target" value="ko"></property>
+	</bean> -->
+
+
 </beans>

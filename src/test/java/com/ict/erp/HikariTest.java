@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class HikariTest {
@@ -11,11 +12,17 @@ public class HikariTest {
 	public static void main(String[] args) {
 
 		HikariDataSource hds = new HikariDataSource();
+		HikariConfig hc = new HikariConfig();
+
+		System.out.println(hds.getDriverClassName());
+		
 		hds.setJdbcUrl("");
 		hds.setUsername("ictu");
 		hds.setPassword("12345678");
 		hds.setDriverClassName("oracle.jdbc.OracleDriver");
-		
+		System.out.println(hds.getUsername());
+		System.out.println(hds.getPassword());
+		System.out.println(hds.getDriverClassName());
 		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
 		ssfb.setDataSource(hds);
 		

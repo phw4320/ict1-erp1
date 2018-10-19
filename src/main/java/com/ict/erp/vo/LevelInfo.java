@@ -8,7 +8,6 @@ public class LevelInfo {
 	private Integer lilevel;
 	private String liname;
 	private String lidesc;
-
 	public Integer getLinum() {
 		return linum;
 	}
@@ -40,11 +39,9 @@ public class LevelInfo {
 		this.liname = liname;
 		this.lidesc = lidesc;
 	}
-	public LevelInfo() {}
-	
 	@Override
 	public String toString() {
 		return "LevelInfo [linum=" + linum + ", lilevel=" + lilevel + ", liname=" + liname + ", lidesc=" + lidesc + "]";
 	}
-	
+	public LevelInfo() {};
 }

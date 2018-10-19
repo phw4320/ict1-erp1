@@ -10,11 +10,17 @@
 	<select id="getLevelInfo" resultType="li">
 		select * from level_info where liname like '%' || #{liname} || '%'
 	</select>
+	
+	<select id="compareLevelInfo" resultType="li">
+		select * from level_info
+	</select>
+
 
 	<insert id="insertLevelInfo" parameterType="li">
 		insert into level_info(linum, lilevel, liname, lidesc) 
 		values(seq_linum.nextval, #{lilevel}, #{liname}, #{lidesc})
 	</insert>
+
 
 	<update id="updateLevelInfo" parameterType="li">
 		update level_info 
@@ -25,7 +31,17 @@
 		</set>
 		where linum=#{linum}
 	</update>
-
+	
+	<update id="updateLevelInfoError" parameterType="li">
+		update level_info 
+		<set>
+			<if test="liname!=null">liname1=#{liname},</if>
+			<if test="lilevel!=null">lilevel=#{lilevel},</if>
+			<if test="lidesc!=null">lidesc=#{lidesc}, </if>
+		</set>
+		where linum=#{linum}
+	</update>
+	
 	<delete id="deleteLevelInfo" parameterType="li">
 		delete from level_info
 		where linum=#{linum}
@@ -34,4 +50,7 @@
 	<select id="loginLevelInfo" parameterType="li">
 		select count(*) from level_info where liname=#{liname} and lidesc=#{lidesc}		
 	</select>
+	
+
+		
 </mapper>
