@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,34 +41,34 @@ public class DBtest {
 	@Test
 	public void selectServiceTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		assertEquals(9, ls.getLevelInfoList(null).size());
+		assertEquals(10, ls.getLevelInfoList(null).size());
 	}
 	@Test
 	public void selDaoTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		li.setLiname("63");
-		assertEquals(1, ls.getLevelInfo(li).size());
+		li.setLinum(81);
+		assertNotNull(ldao.selectLevelInfo(li));
 	}
 	@Test
 	public void selServiceTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		li.setLiname("63");
-		assertEquals(1, ls.getLevelInfo(li).size());
+		li.setLinum(81);
+		assertNotNull(ls.getLevelInfo(li));
 	}
 	@Test
 	public void insertDaoTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		li.setLinum(50);
-		li.setLilevel(78);
+		li.setLinum(82);
+		li.setLilevel(64);
 		li.setLiname("97");
 		li.setLidesc("hello");
-		assertEquals(1, ls.insertLevelInfo(li));
+		assertEquals(1, ldao.insertLevelInfo(li));
 	}
 	@Test
 	public void insertServiceTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		li.setLilevel(77);
-		li.setLinum(51);
+		li.setLilevel(83);
+		li.setLinum(65);
 		li.setLiname("98");
 		li.setLidesc("bye");
 		assertEquals(1, ls.insertLevelInfo(li));
@@ -76,29 +77,29 @@ public class DBtest {
 	public void deleteDaoTest() throws SQLException {
 		assertNotNull(ds.getConnection());
 
-		int linum = 50;
-		assertEquals(1, ls.deleteLevelInfo(linum));
+		int linum = 29;
+		assertEquals(1, ldao.deleteLevelInfo(linum));
 	}
 	@Test
 	public void deleteServiceTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		int linum = 51;
+		int linum = 30;
 		assertEquals(1, ls.deleteLevelInfo(linum));
 	}
 	@Test
 	public void updateDaoTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		li.setLilevel(39);
-		li.setLinum(27);
+		li.setLilevel(61);
+		li.setLinum(31);
 		li.setLiname("111");
 		li.setLidesc("hi");
-		assertEquals(1, ls.updateLevelInfo(li));
+		assertEquals(1, ldao.updateLevelInfo(li));
 	}
 	@Test
 	public void updateServiceTest() throws SQLException {
 		assertNotNull(ds.getConnection());
-		li.setLilevel(39);
-		li.setLinum(29);
+		li.setLilevel(62);
+		li.setLinum(32);
 		li.setLiname("111");
 		li.setLidesc("hi");
 		assertEquals(1, ls.updateLevelInfo(li));

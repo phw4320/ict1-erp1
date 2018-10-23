@@ -23,28 +23,47 @@ public class LevelInfoController {
 	@Autowired
 	private LevelInfoService lis;
 
-	/*@RequestMapping(value="/levelinfo",method=RequestMethod.GET)
-	public String getLevelInfoList(
-			 @ModelAttribute LevelInfo li,
-			Model m) throws SQLException {
+	@RequestMapping(value="/levelinfo",method=RequestMethod.GET)
+	public String getLevelInfoList(@ModelAttribute LevelInfo li, Model m) throws SQLException {
 		m.addAttribute("liList", lis.getLevelInfoList(li));
 		return "levelinfo/list";
-	}*/
-	
+	}
+
 	@RequestMapping(value="/levelinfos",method=RequestMethod.GET)
 	public @ResponseBody List<LevelInfo> getLevelInfoList2(@ModelAttribute LevelInfo li) throws SQLException {
 		return lis.getLevelInfoList(li);
 	}
 	
-	@RequestMapping(value="/levelinfos",method=RequestMethod.GET)
-	public @ResponseBody List<LevelInfo> getLevelInfoList3(@ModelAttribute LevelInfo li) throws SQLException {
-		return lis.getLevelInfoList(li);
+	@RequestMapping(value="/levelinfos/{linum}",method=RequestMethod.GET)
+	public @ResponseBody LevelInfo getLevelInfoList3(@ModelAttribute LevelInfo li, @PathVariable Integer linum) throws SQLException {
+		li.setLinum(linum);
+		return lis.getLevelInfo(li);
 	}
-	
-	@RequestMapping(value="/levelinfo/{liname}",method=RequestMethod.GET)
-	public @ResponseBody List<LevelInfo> getLevelInfoList(@ModelAttribute LevelInfo li) throws SQLException {
-		return lis.getLevelInfoList(li);
-	}
+	 @RequestMapping(value="/levelinfos/{linum}",method=RequestMethod.DELETE)
+		@ResponseBody
+		public Integer getLevelInfoList4(@ModelAttribute LevelInfo li, @PathVariable Integer linum) throws SQLException {
+			li.setLinum(linum);
+			return lis.deleteLevelInfo(linum);
+		}
+	 @RequestMapping(value="/levelinfos/{linum}",method=RequestMethod.PUT)
+		@ResponseBody
+		public Integer getLevelInfoList5(@ModelAttribute LevelInfo li, @PathVariable Integer linum) throws SQLException {
+			li.setLinum(linum);
+			li.setLilevel(78);
+			li.setLiname("update");
+			li.setLidesc("complete");
+			return lis.updateLevelInfo(li);
+		}
+
+		@RequestMapping(value="/levelinfos/{linum}",method=RequestMethod.POST)
+		@ResponseBody
+		public Integer getLevelInfoList6(@ModelAttribute LevelInfo li, @PathVariable Integer linum) throws SQLException {
+			li.setLinum(linum);
+			li.setLilevel(72);
+			li.setLiname("insert");
+			li.setLidesc("complete");
+			return lis.insertLevelInfo(li);
+		}
 	
 	@RequestMapping(value="/levelinfo/{liname}",method=RequestMethod.GET)
 	public String getLevelInfo(

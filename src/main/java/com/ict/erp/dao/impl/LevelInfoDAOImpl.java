@@ -26,8 +26,16 @@ public class LevelInfoDAOImpl implements LevelInfoDAO{
 		return ss.selectList("SQL.LEVELINFO.selectLevelInfo",li);
 	}
 	
-	public List<LevelInfo> selectLevelInfo(LevelInfo li) throws SQLException {
-		return ss.selectList("SQL.LEVELINFO.getLevelInfo",li);
+	public LevelInfo selectLevelInfo(LevelInfo li) throws SQLException {
+		/*List<LevelInfo> liList;
+		liList = ss.selectList("SQL.LEVELINFO.getLevelInfo",li);
+		System.out.println(liList);
+		if (!liList.isEmpty()) {
+			return liList;
+		} else {
+			return null;
+		}*/
+		return ss.selectOne("SQL.LEVELINFO.getLevelInfo",li);
 	}
 	
 	public int insertLevelInfo(LevelInfo li) throws SQLException {

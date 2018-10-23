@@ -21,7 +21,7 @@ public class LevelInfoServiceImpl implements LevelInfoService {
 		return lidao.selectLevelInfoList(li);
 	}
 	
-	public List<LevelInfo> getLevelInfo(LevelInfo li) throws SQLException {
+	public LevelInfo getLevelInfo(LevelInfo li) throws SQLException {
 		return lidao.selectLevelInfo(li);
 	}
 

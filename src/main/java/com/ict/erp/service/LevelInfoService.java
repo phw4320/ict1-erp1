@@ -7,7 +7,7 @@ import com.ict.erp.vo.LevelInfo;
 
 public interface LevelInfoService {
 	public List<LevelInfo> getLevelInfoList(LevelInfo li) throws SQLException;
-	public List<LevelInfo> getLevelInfo(LevelInfo li) throws SQLException;
+	public LevelInfo getLevelInfo(LevelInfo li) throws SQLException;
 	public int insertLevelInfo(LevelInfo li) throws SQLException;
 	public int updateLevelInfo(LevelInfo li) throws SQLException;
 	public int deleteLevelInfo(int linum) throws SQLException;
