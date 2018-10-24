@@ -70,7 +70,7 @@
 				var loginBtn = $("<a/>",{"class":"kakao-login-btn","text":"로그인"});
 				loginBtn.click(function(){
 					Kakao.Auth.login({
-						kakao.Auth.setAccessToken(authObj.access_token);
+						//kakao.Auth.setAccessToken(authObj.access_token);
 						persistAccessToken: true,
 						persistRefreshToken: true,
 						success: function(authObj) {
