@@ -12,5 +12,5 @@ public interface LevelInfoService {
 	public int updateLevelInfo(LevelInfo li) throws SQLException;
 	public int deleteLevelInfo(int linum) throws SQLException;
 	public int updateLevelInfoError(LevelInfo li) throws SQLException;
-	
+	public int getLinum() throws SQLException;
 }

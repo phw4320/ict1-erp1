@@ -6,9 +6,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#login").click(function() {
+		var action = $("#form1").attr('action');
+		var form_data = {
+			id: $("#id").val(),
+			pwd: $("pwd").val(),
+		};
+		$.ajax({
+			type: 'POST',
+			url: '/user/login',
+			data : form_data,
+			dataType:'json',
+			success: function(response) {
+				if(response == 'ok') {
+					alert("로그인 성공");
+				}
+				else {
+					alert("로그인 실패");
+				}
+			},
+			error : function(){
+            	console.log("에러");
+       		}
+		});
+		return false;
+	});
+});
+</script>
 <body>
-<button>가입</button>
-<button>로그인</button>
-<button>회원보기</button>
+id : <input type="text" id="id">
+pwd : <input type="password" id="pwd">
+<button type="button" id="login"></button>
 </body>
 </html>

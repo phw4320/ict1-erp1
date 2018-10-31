@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<body>
+	<textarea name="chatRoom" rows="10" cols="50" readonly></textarea>
+	<br />
+	<input type="text" name="message" />
+	<button type="submit" onclick="send()">send</button>
+</body>
+<script>
+	var ws;
+	var chat = document.querySelector('textarea[name=chatRoom]');
+	var inputMsg = document.querySelector('input[name=message]');
+	ws = new WebSocket('ws://192.168.0.12/wetest');
+	function doInit() {
+
+		ws.onopen = function(evt) {
+			alert('연결성공');
+			chat.value += "연결 성공\n";
+		}
+		ws.onerror = function(e) {
+			alert(e);
+		}
+		ws.onmessage = function(evt) {
+			alert(evt.data);
+			chat.value += "상대 : " + evt.data + "\n";
+		}
+	}
+	function send() {
+		chat.value += "나 : " + inputMsg.value + "\n";
+		ws.send(inputMsg.value);
+		inputMsg.value = "";
+	}
+
+	window.addEventListener('load', doInit);
+</script>
+</body>
+</html>
+

@@ -8,6 +8,8 @@ public class LevelInfo {
 	private Integer lilevel;
 	private String liname;
 	private String lidesc;
+	private Integer getnum;
+	
 	public Integer getLinum() {
 		return linum;
 	}

@@ -29,9 +29,28 @@ public class LevelInfoController {
 		return "levelinfo/list";
 	}
 
+	 @RequestMapping(value="/levelinfos1",method=RequestMethod.PUT)
+		@ResponseBody
+		public Integer getLevelInfoList8(@RequestBody LevelInfo li) throws SQLException {
+			return lis.updateLevelInfo(li);
+		}
+	 
 	@RequestMapping(value="/levelinfos",method=RequestMethod.GET)
 	public @ResponseBody List<LevelInfo> getLevelInfoList2(@ModelAttribute LevelInfo li) throws SQLException {
 		return lis.getLevelInfoList(li);
+	}
+	
+	@RequestMapping(value="/levelinfos",method=RequestMethod.POST)
+	@ResponseBody
+	public Integer getLevelInfoList7(@RequestBody LevelInfo li) throws SQLException {
+		System.out.println(li);
+		return lis.insertLevelInfo(li);
+	}
+	@RequestMapping(value="/levelinfos1",method=RequestMethod.GET)
+	public Integer getLevelInfoList98() throws SQLException {
+		int a = lis.getLinum();
+		System.out.println(a);
+		return a;
 	}
 	
 	@RequestMapping(value="/levelinfos/{linum}",method=RequestMethod.GET)

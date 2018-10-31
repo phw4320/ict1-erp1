@@ -11,6 +11,10 @@
 		select * from level_info where linum= #{linum}
 	</select>
 	
+	<select id="getLinum" resultType="li">
+		select seq_linum.nextval from dual
+	</select>
+	
 	<select id="getLevelInfo2" resultType="li">
 		select * from level_info where liname like '%' || #{liname} || '%'
 	</select>

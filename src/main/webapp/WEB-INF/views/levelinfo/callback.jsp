@@ -66,8 +66,10 @@
 											
 											var email = naverLogin.user.getEmail();
 											var profileImage = naverLogin.user.getProfileImage();
+											var id = naverLogin.user.getId();
 											var birthday = naverLogin.user.getBirthday();
-											var name = naverLogin.user.getNickName();
+											var nickname = naverLogin.user.getNickName();
+											var name = naverLogin.user.getName();
 											var age = naverLogin.user.getAge();
 
 											if (email == undefined
@@ -88,10 +90,11 @@
 												naverLogin.reprompt();
 												return;
 											}
-										
+											alert(id);
 											alert(email);
 											alert(profileImage);
 											alert(birthday);
+											alert(nickname);
 											alert(name);
 											alert(age);
 

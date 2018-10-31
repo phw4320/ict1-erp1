@@ -58,5 +58,10 @@ public class LevelInfoDAOImpl implements LevelInfoDAO{
 		return ss.insert("SQL.LEVELINFO.updateLevelInfo",li);
 	}
 
+	@Override
+	public int selectGetLinum() throws SQLException {
+		return ss.selectOne("SQL.LEVELINFO.getLinum");
+	}
+
 }
 

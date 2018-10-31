@@ -21,7 +21,7 @@
 				pattern:'4H',
 				cells: [
 				{id:"a",text:"Left",fix_size:[true,null]},
-				{id:"b",text:"middle top"},
+				{id:"b",text:"middle top"},	
 				{id:"c",text:"middle bottom"},
 				{id:"d",text:"Right"},
 				]
