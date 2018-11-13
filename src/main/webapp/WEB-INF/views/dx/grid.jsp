@@ -54,6 +54,8 @@
 		dxGrid.setColumnIds('linum,lilevel,liname,lidesc');
 		dxGrid.setColTypes('ro,ed,ed,ed');
 		dxGrid.enableContextMenu(dxMenu);
+		
+		dxgrid.setColSorting("int,str,str,str"); 
 		dxGrid.init();
 		/* var xhr = new XMLHttpRequest();
 		var url = "/levelinfos";

@@ -1,4 +1,4 @@
-package com.ict.erp.controller;
+/*package com.ict.erp.controller;
 
 import java.sql.SQLException;
 
@@ -20,3 +20,4 @@ public class TestAdvice {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(se.getMessage());
 	}
 }
+*/

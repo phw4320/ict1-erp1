@@ -35,7 +35,7 @@ public class LevelInfoController {
 			return lis.updateLevelInfo(li);
 		}
 	 
-	@RequestMapping(value="/levelinfos",method=RequestMethod.GET)
+	@RequestMapping(value="/users",method=RequestMethod.GET)
 	public @ResponseBody List<LevelInfo> getLevelInfoList2(@ModelAttribute LevelInfo li) throws SQLException {
 		return lis.getLevelInfoList(li);
 	}
@@ -68,7 +68,7 @@ public class LevelInfoController {
 		@ResponseBody
 		public Integer getLevelInfoList5(@ModelAttribute LevelInfo li, @PathVariable Integer linum) throws SQLException {
 			li.setLinum(linum);
-			li.setLilevel(78);
+			li.setLilevel("hello");
 			li.setLiname("update");
 			li.setLidesc("complete");
 			return lis.updateLevelInfo(li);
@@ -78,7 +78,7 @@ public class LevelInfoController {
 		@ResponseBody
 		public Integer getLevelInfoList6(@ModelAttribute LevelInfo li, @PathVariable Integer linum) throws SQLException {
 			li.setLinum(linum);
-			li.setLilevel(72);
+			li.setLilevel("hi");
 			li.setLiname("insert");
 			li.setLidesc("complete");
 			return lis.insertLevelInfo(li);
