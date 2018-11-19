@@ -10,7 +10,7 @@
 <form action="/login/loginPost" method="post" id="loginForm">
 	<div class="form-group label-floating">
 		<label class="control-label">이메일 주소</label> <input name="userEmail" type="text" id="exampleInputEmail1" class="form-control" value="${cookie.rememberID.value}">
-	</div>
+	</div>    
 	<div class="form-group label-floating">
 		<label class="control-label">비밀번호</label> <input name="userPwd" type="password" id="exampleInputPassword1" class="form-control">
 	</div>
