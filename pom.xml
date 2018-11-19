@@ -248,8 +248,8 @@
 
 
 	</dependencies>
-	<!-- <build>
+	 <build>
 		<finalName>ict</finalName>
-	</build> -->
+	</build>
 </project>
 
