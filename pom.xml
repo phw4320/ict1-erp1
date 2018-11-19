@@ -248,8 +248,8 @@
 
 
 	</dependencies>
-	<build>
+<!-- 	<build>
 		<finalName>epr</finalName>
-	</build>
+	</build> -->
 </project>
 
