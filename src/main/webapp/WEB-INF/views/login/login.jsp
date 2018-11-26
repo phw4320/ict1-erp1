@@ -12,7 +12,7 @@
 		<label class="control-label">이메일 주소</label> <input name="userEmail" type="text" id="exampleInputEmail1" class="form-control" value="${cookie.rememberID.value}">
 	</div>    
 	<div class="form-group label-floating">
-		<label class="control-label">비밀번호dddd</label> <input name="userPwd" type="password" id="exampleInputPassword1" class="form-control">
+		<label class="control-label">비밀번dddd호dddd</label> <input name="userPwd" type="password" id="exampleInputPassword1" class="form-control">
 	</div>
 	<div class="checkbox">
 		<label> <input type="checkbox" name="rememberEmail"> 아이디저장 </label>
